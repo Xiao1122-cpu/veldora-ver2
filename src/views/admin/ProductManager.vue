@@ -19,7 +19,7 @@
             <tbody>
                 <tr>
                     <td>1</td>
-                    <td><img src="..." class="rounded" alt="Item"></td>
+                    <td><img src="@/assets/image/da3.png" class="rounded" alt="Item"></td>
                     <td>Crystal Top-Up</td>
                     <td>Genshin Impact</td>
                     <td>500.000đ</td>
@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <td>2</td>
-                    <td><img src="..." class="rounded" alt="Item"></td>
+                    <td><img src="@/assets/image/da2.png" class="rounded" alt="Item"></td>
                     <td>Monthly Pass</td>
                     <td>Honkai Star Rail</td>
                     <td>120.000đ</td>
