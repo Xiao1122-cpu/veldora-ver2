@@ -111,13 +111,13 @@ const visibleCount = ref(8);
 const visibleNews = computed(() => news.value.slice(0, visibleCount.value));
 
 const ListItem = async () => {
-    const res = await axios.get("http://localhost:3000/carousel");
+    const res = await axios.get("https://veldora-ver2.onrender.com/carousel");
     carousel.value = res.data.filter(item => item.status === true);
 
-    const listNews = await axios.get("http://localhost:3000/News");
+    const listNews = await axios.get("https://veldora-ver2.onrender.com/News");
     news.value = listNews.data
 
-    const listGames = await axios.get("http://localhost:3000/listGames");
+    const listGames = await axios.get("https://veldora-ver2.onrender.com/listGames");
     games.value = listGames.data
 }
 

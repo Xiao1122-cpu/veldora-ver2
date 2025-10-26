@@ -73,7 +73,7 @@ const registerUser = async () => {
 
     try {
         // Lấy danh sách user từ JSON Server
-        const res = await fetch('http://localhost:3000/user')
+        const res = await fetch('https://veldora-ver2.onrender.com/user')
         const users = await res.json()
 
         // Kiểm tra trùng email
@@ -92,7 +92,7 @@ const registerUser = async () => {
             role: 'user'
         }
 
-        await fetch('http://localhost:3000/user', {
+        await fetch('https://veldora-ver2.onrender.com/user', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newUser)

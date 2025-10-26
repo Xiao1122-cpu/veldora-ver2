@@ -52,13 +52,13 @@ import axios from "axios";
 const list = ref([]);
 
 const getList = async () => {
-    const res = await axios.get("http://localhost:3000/carousel");
+    const res = await axios.get("https://veldora-ver2.onrender.com/carousel");
     list.value = res.data.reverse();
 };
 
 const deleteItem = async (id) => {
     if (confirm("Bạn có chắc muốn xóa ảnh này không?")) {
-        await axios.delete(`http://localhost:3000/carousel/${id}`);
+        await axios.delete(`https://veldora-ver2.onrender.com/carousel/${id}`);
         getList();
     }
 };

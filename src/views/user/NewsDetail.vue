@@ -23,7 +23,7 @@ const route = useRoute();
 
 onMounted(async() =>{
     const id = route.params.id;
-    const res = await axios.get(`http://localhost:3000/News/${id}`);
+    const res = await axios.get(`https://veldora-ver2.onrender.com/News/${id}`);
     newsDetail.value = res.data;
 });
 </script>

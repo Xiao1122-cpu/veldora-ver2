@@ -45,7 +45,7 @@ const visibleCount = ref(6);
 const visibleNews = computed(() => news.value.slice(0, visibleCount.value));
 
 const listNews = async () => {
-    const res = await axios.get("http://localhost:3000/News");
+    const res = await axios.get("https://veldora-ver2.onrender.com/News");
     news.value = res.data;
 };
 

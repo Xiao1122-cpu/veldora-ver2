@@ -38,13 +38,13 @@ import { onMounted, ref } from 'vue';
 const games = ref([])
 
 const loadGames = async () => {
-    const res = await axios.get("http://localhost:3000/listGames")
+    const res = await axios.get("https://veldora-ver2.onrender.com/listGames")
     games.value = res.data;
 }
 
 const deleteGames = async (id) => {
     if (confirm("Bạn có chắc muốn xóa game này")) {
-        await axios.delete(`http://localhost:3000/listGames/${id}`)
+        await axios.delete(`https://veldora-ver2.onrender.com/listGames/${id}`)
         loadGames();
     }
 }

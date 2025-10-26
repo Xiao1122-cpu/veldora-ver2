@@ -178,7 +178,7 @@ onMounted(async () => {
         isEdit.value = true;
         editId.value = id;
         try {
-            const res = await axios.get(`http://localhost:3000/News/${id}`);
+            const res = await axios.get(`https://veldora-ver2.onrender.com/News/${id}`);
             // đảm bảo status là string để radio binding đúng
             listNews.value = {
                 name: res.data.name ?? "",
@@ -214,10 +214,10 @@ const saveNews = async () => {
 
     try {
         if (isEdit.value) {
-            await axios.put(`http://localhost:3000/News/${editId.value}`, payload);
+            await axios.put(`https://veldora-ver2.onrender.com/News/${editId.value}`, payload);
             alert("Cập nhật thành công!");
         } else {
-            await axios.post("http://localhost:3000/News", payload);
+            await axios.post("https://veldora-ver2.onrender.com/News", payload);
             alert("Thêm mới thành công!");
         }
         router.push("/admin/news");

@@ -47,7 +47,7 @@ const users = ref([]);
 
 const fetchUsers = async () => {
     try {
-        const res = await axios.get('http://localhost:3000/user');
+        const res = await axios.get('https://veldora-ver2.onrender.com/user');
         users.value = res.data.reverse();
     } catch (err) {
         console.error('Lỗi khi fetch người dùng:', err);
@@ -66,7 +66,7 @@ const editUser = (id) => {
 const deleteUser = async (id) => {
     if (!confirm('Bạn có chắc muốn xoá người dùng này?')) return;
     try {
-        await axios.delete(`http://localhost:3000/user/${id}`);
+        await axios.delete(`https://veldora-ver2.onrender.com/user/${id}`);
         alert('Xoá thành công!');
         fetchUsers();
     } catch (err) {

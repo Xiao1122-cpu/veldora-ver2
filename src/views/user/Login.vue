@@ -64,7 +64,7 @@ const loginUser = async () => {
     }
 
     try {
-        const res = await fetch('http://localhost:3000/user')
+        const res = await fetch('https://veldora-ver2.onrender.com/user')
         const users = await res.json()
 
         const user = users.find(u =>

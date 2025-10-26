@@ -165,7 +165,7 @@ onMounted(async () => {
         isEdit.value = true;
         editId.value = id;
         try {
-            const res = await axios.get(`http://localhost:3000/carousel/${id}`);
+            const res = await axios.get(`https://veldora-ver2.onrender.com/carousel/${id}`);
             carousel.value = res.data;
         } catch (err) {
             console.error(err);
@@ -179,10 +179,10 @@ const saveCarousel = async () => {
 
     try {
         if (isEdit.value) {
-            await axios.put(`http://localhost:3000/carousel/${editId.value}`, carousel.value);
+            await axios.put(`https://veldora-ver2.onrender.com/carousel/${editId.value}`, carousel.value);
             alert("Cập nhật thành công!");
         } else {
-            await axios.post("http://localhost:3000/carousel", carousel.value);
+            await axios.post("https://veldora-ver2.onrender.com/carousel", carousel.value);
             alert("Thêm mới thành công!");
         }
         router.push("/admin/carousel");

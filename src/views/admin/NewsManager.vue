@@ -42,13 +42,13 @@ import { onMounted, ref } from 'vue';
 const news = ref([]);
 
 const loadNews = async () => {
-    const res = await axios.get("http://localhost:3000/News");
+    const res = await axios.get("https://veldora-ver2.onrender.com/News");
     news.value = res.data;
 }
 
 const deleteNews = async (id) => {
     if (confirm("Bạn có muốn xóa tin tức này không")) {
-        await axios.delete(`http://localhost:3000/News/${id}`);
+        await axios.delete(`https://veldora-ver2.onrender.com/News/${id}`);
         loadNews();
     }
 }
