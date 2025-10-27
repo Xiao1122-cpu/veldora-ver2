@@ -10,7 +10,6 @@
                     <th>Email</th>
                     <th>Vai trò</th>
                     <th>Trạng thái</th>
-                    <th>Hành động</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,10 +22,6 @@
                         <span class="badge" :class="user.active ? 'bg-success' : 'bg-secondary'">
                             {{ user.active ? 'Khóa' : 'Hoạt động' }}
                         </span>
-                    </td>
-                    <td>
-                        <button @click="editUser(user.id)" class="btn btn-warning btn-sm">Sửa</button>
-                        <button @click="deleteUser(user.id)" class="btn btn-danger btn-sm">Xóa</button>
                     </td>
                 </tr>
                 <tr v-if="users.length === 0">
@@ -56,11 +51,11 @@ const fetchUsers = async () => {
 };
 
 const goAddUser = () => {
-    router.push('/admin/users/add'); // chỉnh theo route bạn
+    router.push('/admin/users/add'); 
 };
 
 const editUser = (id) => {
-    router.push(`/admin/users/edit/${id}`); // chỉnh theo route bạn
+    router.push(`/admin/users/edit/${id}`); 
 };
 
 const deleteUser = async (id) => {

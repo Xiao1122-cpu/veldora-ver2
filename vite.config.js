@@ -1,14 +1,12 @@
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
-// ⚠️ KHÔNG import 'vite-plugin-vue-devtools' trong production
-const isDev = process.env.NODE_ENV === 'development'
+// import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
   plugins: [
     vue(),
-    ...(isDev ? [require('vite-plugin-vue-devtools').default()] : []),
+    // vueDevTools(),
   ],
   resolve: {
     alias: {

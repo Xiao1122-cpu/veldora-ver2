@@ -15,6 +15,7 @@ import UserManager from '@/views/admin/UserManager.vue'
 import CarouselForm from '@/components/pages/CarouselForm.vue'
 import NewsForm from '@/components/pages/NewsForm.vue'
 import GamesForm from '@/components/pages/GamesForm.vue'
+import AdminComments from '@/views/admin/AdminComments.vue'
 
 // User views
 import Home from '@/views/user/Home.vue'
@@ -23,9 +24,9 @@ import NewsDetail from '@/views/user/NewsDetail.vue'
 import AboutHoyoVer from '@/views/user/AboutHoyoVer.vue'
 import Login from '@/views/user/Login.vue'
 import Register from '@/views/user/Register.vue'
+import ProfileView from '@/views/user/ProfileView.vue'
 
 const routes = [
-  // ==================== ADMIN ====================
   {
     path: '/admin',
     name: 'adminlayout',
@@ -44,10 +45,10 @@ const routes = [
       { path: 'gamesForm/:id', component: GamesForm },
       { path: 'product', component: ProductManager },
       { path: 'users', component: UserManager },
+      { path: 'comments', component: AdminComments },
     ],
   },
 
-  // ==================== USER SITE ====================
   {
     path: '/',
     name: 'userlayout',
@@ -60,7 +61,6 @@ const routes = [
     path: '/news',
     name: 'news',
     component: NewsLayouat,
-    meta: { requiresAuth: true },
     children: [
       { path: '', component: News },
       { path: 'newsDetail/:id', component: NewsDetail },
@@ -72,17 +72,10 @@ const routes = [
     component: AboutHoyoVer,
   },
 
-  // ==================== AUTH ====================
-  {
-    path: '/login',
-    name: 'login',
-    component: Login,
-  },
-  {
-    path: '/register',
-    name: 'register',
-    component: Register,
-  },
+
+  { path: '/login', name: 'login', component: Login },
+  { path: '/register', name: 'register', component: Register },
+  { path: '/profile', name: 'profile', component: ProfileView },
 ]
 
 const router = createRouter({
@@ -90,12 +83,10 @@ const router = createRouter({
   routes,
 })
 
-// ==================== ROUTE GUARD ====================
 router.beforeEach((to, from, next) => {
-  const user = JSON.parse(localStorage.getItem('user'))
   const admin = JSON.parse(localStorage.getItem('admin'))
 
-  // 🟢 1. Nếu route cần admin
+
   if (to.meta.requiresAdmin) {
     if (!admin) {
       alert('Vui lòng đăng nhập quản trị!')
@@ -105,20 +96,6 @@ router.beforeEach((to, from, next) => {
       alert('Bạn không có quyền truy cập!')
       return next('/')
     }
-  }
-
-  // 🟢 2. Nếu route cần người dùng (user)
-  if (to.meta.requiresAuth && !user) {
-    alert('Vui lòng đăng nhập để tiếp tục!')
-    localStorage.setItem('redirectAfterLogin', to.fullPath)
-    return next('/login')
-  }
-
-  // 🟢 3. Nếu admin đăng nhập → user site KHÔNG coi là đang đăng nhập
-  // (tức là không ảnh hưởng trang chủ)
-  if (to.path.startsWith('/') && !to.path.startsWith('/admin')) {
-    // ở trang user thì không xóa admin, chỉ tách biệt session
-    // => user vẫn là user, admin vẫn là admin, độc lập
   }
 
   next()

@@ -16,9 +16,6 @@
                 <router-link to="/admin/games" class="nav-link text-white" active-class="active">
                     <li class="">Game</li>
                 </router-link>
-                <router-link to="/admin/product" class="nav-link text-white" active-class="active">
-                    <li class="">Sản Phẩm</li>
-                </router-link>
                 <router-link to="/admin/users" class="nav-link text-white" active-class="active">
                     <li class="">Người Dùng</li>
                 </router-link>

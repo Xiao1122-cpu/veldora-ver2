@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row mb-4">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Tin tức</h5>
@@ -9,7 +9,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Game</h5>
@@ -17,19 +17,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h5 class="card-title">Vật phẩm</h5>
+                        <h5 class="card-title">Carousel</h5>
                         <p class="card-text fs-4">320</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Đơn hàng</h5>
-                        <p class="card-text fs-4">87</p>
                     </div>
                 </div>
             </div>
@@ -54,7 +46,7 @@
             <!-- thêm bài viết -->
         </div>
 
-        <h5 class="mb-3">Đơn hàng gần đây</h5>
+        <h5 class="mb-3">Người Dùng Đăng Ký Gần Đây</h5>
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">

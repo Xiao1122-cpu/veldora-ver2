@@ -7,12 +7,14 @@
                         <img :src="img1" class="img-fluid" alt="logo" width="200" height="100" />
                     </picture>
                 </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="collapse navbar-collapse fs-4 flex-row-reverse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
                             <router-link to="/" class="nav-link text-light" active-class="active">
                                 Trang Chủ
@@ -29,18 +31,28 @@
                             </router-link>
                         </li>
 
-                        <!-- Nếu chưa đăng nhập -->
+                      
                         <li v-if="!isLoggedIn" class="nav-item">
                             <router-link to="/login" class="nav-link text-light" active-class="active">
-                                Trung Tâm Nạp
+                                Đăng Nhập
                             </router-link>
                         </li>
 
-                        <!-- Nếu đã đăng nhập -->
-                        <li v-else class="nav-item">
-                            <a class="nav-link text-light" href="#" @click.prevent="logout">
-                                Đăng Xuất
+                       
+                        <li v-else class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img :src="user.avatar" alt="Avatar" class="rounded-circle me-2" width="35"
+                                    height="35" />
+                                <span>{{ user.email }}</span>
                             </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item text-danger" href="#" @click.prevent="logout">
+                                        Đăng xuất
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -56,16 +68,20 @@ import img1 from '@/assets/image/logo.png'
 
 const router = useRouter()
 const isLoggedIn = ref(false)
+const user = ref({ email: ''})
 
 onMounted(() => {
-    // Kiểm tra xem người dùng đã đăng nhập chưa
-    const user = localStorage.getItem('user')
-    if (user) {
+    const userData = localStorage.getItem('user')
+    if (userData) {
+        const parsedUser = JSON.parse(userData)
+        user.value = {
+            email: parsedUser.email || 'Người dùng',
+            avatar: parsedUser.avatar || 'https://cdn-icons-png.flaticon.com/512/847/847969.png'
+        }
         isLoggedIn.value = true
     }
 })
 
-// Hàm đăng xuất
 const logout = () => {
     localStorage.removeItem('user')
     isLoggedIn.value = false
@@ -91,5 +107,9 @@ header {
     z-index: 1000;
     opacity: 0.9;
     width: 100%;
+}
+
+.dropdown-toggle img {
+    object-fit: cover;
 }
 </style>

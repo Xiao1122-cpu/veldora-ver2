@@ -33,7 +33,7 @@
                             <input v-model="password" type="password" class="form-control p-3 bg-light"
                                 placeholder="Mật Khẩu" style="border-radius: 10px;">
                         </div>
-                        <button class="btn btn-success px-5 w-100 mt-4 p-3" style="border-radius: 10px;" type="submit">
+                        <button class="btn btn-primary px-5 w-100 mt-4 p-3" style="border-radius: 10px;" type="submit">
                             Đăng Ký
                         </button>
                     </form>

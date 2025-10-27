@@ -7,21 +7,18 @@
 
             <div class="modal-body form-scroll">
                 <form @submit.prevent="saveNews">
-                    <!-- Tên -->
                     <div class="mb-3">
                         <label class="form-label">Tên Trò Chơi</label>
                         <input type="text" class="form-control" v-model="listNews.name" @input="clearError('name')" />
                         <small v-if="errors.name" class="text-danger d-block mt-1">{{ errors.name }}</small>
                     </div>
 
-                    <!-- Tiêu đề -->
                     <div class="mb-3">
                         <label class="form-label">Tiêu Đề</label>
                         <input type="text" class="form-control" v-model="listNews.title" @input="clearError('title')" />
                         <small v-if="errors.title" class="text-danger d-block mt-1">{{ errors.title }}</small>
                     </div>
 
-                    <!-- Nội dung -->
                     <div class="mb-3">
                         <label class="form-label">Nội Dung</label>
                         <textarea class="form-control" rows="4" v-model="listNews.text"
@@ -29,14 +26,12 @@
                         <small v-if="errors.text" class="text-danger d-block mt-1">{{ errors.text }}</small>
                     </div>
 
-                    <!-- Ngày đăng -->
                     <div class="mb-3">
                         <label class="form-label">Ngày Đăng</label>
                         <input type="date" class="form-control" v-model="listNews.date" @change="clearError('date')" />
                         <small v-if="errors.date" class="text-danger d-block mt-1">{{ errors.date }}</small>
                     </div>
 
-                    <!-- Trạng thái -->
                     <div class="mb-3">
                         <label class="form-label d-block">Trạng thái</label>
                         <div class="form-check form-check-inline">
@@ -51,7 +46,6 @@
                         </div>
                     </div>
 
-                    <!-- Ảnh -->
                     <div class="mb-3">
                         <label class="form-label">Ảnh</label>
                         <input type="file" class="form-control" @change="uploadImage" accept="image/*" />
@@ -63,7 +57,6 @@
                             style="width:150px; height:150px; object-fit:cover;" />
                     </div>
 
-                    <!-- Buttons -->
                     <div class="modal-footer d-flex justify-content-end gap-2">
                         <router-link to="/admin/news" class="btn btn-secondary">Thoát</router-link>
                         <button type="submit" class="btn btn-primary">
@@ -92,7 +85,7 @@ const listNews = ref({
     title: "",
     text: "",
     date: "",
-    status: "true", // lưu dưới dạng string "true"/"false" vì radio trả về string
+    status: "true", 
     image: "",
 });
 
@@ -106,12 +99,12 @@ const errors = ref({
     image: "",
 });
 
-// clear single error when user types/selects
+
 const clearError = (field) => {
     errors.value[field] = "";
 };
 
-// validate trước khi gửi
+
 const validateForm = () => {
     let valid = true;
     errors.value = { name: "", title: "", text: "", date: "", status: "", image: "" };
@@ -132,7 +125,6 @@ const validateForm = () => {
         errors.value.date = "Vui lòng chọn ngày đăng!";
         valid = false;
     } else {
-        // optional: kiểm tra ngày hợp lệ (không phải tương lai nếu cần)
         const d = new Date(listNews.value.date);
         if (Number.isNaN(d.getTime())) {
             errors.value.date = "Ngày không hợp lệ!";
@@ -151,11 +143,11 @@ const validateForm = () => {
     return valid;
 };
 
-// upload ảnh lên Cloudinary
+
 const uploadImage = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
-    // clear previous error
+    
     errors.value.image = "";
 
     const formData = new FormData();
@@ -171,7 +163,7 @@ const uploadImage = async (e) => {
     }
 };
 
-// load khi edit
+
 onMounted(async () => {
     const id = route.params.id;
     if (id) {
@@ -179,7 +171,7 @@ onMounted(async () => {
         editId.value = id;
         try {
             const res = await axios.get(`http://localhost:3000/News/${id}`);
-            // đảm bảo status là string để radio binding đúng
+          
             listNews.value = {
                 name: res.data.name ?? "",
                 title: res.data.title ?? "",
@@ -195,14 +187,12 @@ onMounted(async () => {
     }
 });
 
-// save (create hoặc update)
+
 const saveNews = async () => {
     if (!validateForm()) {
-        // scroll tới đầu form nếu muốn: window.scrollTo(0,0)
         return;
     }
 
-    // chuyển status về boolean khi lưu vào DB nếu cần
     const payload = {
         name: listNews.value.name.trim(),
         title: listNews.value.title.trim(),

@@ -56,7 +56,7 @@
             <div class="logo"></div>
         </div>
         <div class="container mt-5">
-            <h1>Sản Phẩm Của Chúng Tôi</h1>
+            <h1>Sản Phẩm Của HoYoverse</h1>
             <div class="row mt-4">
                 <div class="col-lg-6 mt-4" v-for="p in games">
                     <div class="card">
@@ -88,9 +88,9 @@
             </div>
             <div class="card bg-dark m-3" style="width: 18rem;">
                 <div class="card-body">
-                    <h2 class="card-title text-white ">Trung Tâm Nạp</h2>
+                    <h2 class="card-title text-white ">Về HoYoverse</h2>
                     <div class="text-end">
-                        <router-link to="/login" class="btn btn-primary rounded-pill" style="font-size: 30px;"><i
+                        <router-link to="/aboutHoyover" class="btn btn-primary rounded-pill" style="font-size: 30px;"><i
                                 class="bi bi-arrow-right-circle-fill"></i></router-link>
                     </div>
                 </div>
@@ -124,19 +124,12 @@ const ListItem = async () => {
 window.addEventListener("scroll", () => {
     const parallax = document.querySelector(".parallax");
     const logo = document.querySelector(".logo");
-
-    // Lấy vị trí của parallax trên trang
+  
     let rect = parallax.getBoundingClientRect();
-
-    // Nếu phần tử nằm trong vùng hiển thị (viewport)
+  
     if (rect.top < window.innerHeight && rect.bottom > 0) {
-        // Tính khoảng cuộn tương đối trong parallax
         let offset = window.scrollY - parallax.offsetTop;
-
-        // Sao di chuyển nhanh hơn
         parallax.style.backgroundPosition = `center ${offset * 0.6}px`;
-
-        // Logo di chuyển chậm hơn
         logo.style.backgroundPosition = `center ${offset * 0.1}px`;
     }
 });

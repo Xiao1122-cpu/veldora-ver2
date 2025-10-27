@@ -39,7 +39,7 @@ const games = ref([])
 
 const loadGames = async () => {
     const res = await axios.get("http://localhost:3000/listGames")
-    games.value = res.data;
+    games.value = res.data.reverse();
 }
 
 const deleteGames = async (id) => {

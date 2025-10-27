@@ -76,18 +76,16 @@ const loginUser = async () => {
             success.value = true
             message.value = 'Đăng nhập thành công!'
 
-            // 🔹 Tách biệt session giữa admin và user
+            // 🔹 LƯU: không xóa session của bên còn lại — giữ song song admin và user
             if (user.role === 'admin') {
-                // Lưu riêng cho admin
                 localStorage.setItem('admin', JSON.stringify(user))
-                localStorage.removeItem('user') // xoá session user nếu có
+                // --> Bỏ localStorage.removeItem('user')
             } else {
-                // Lưu riêng cho user
                 localStorage.setItem('user', JSON.stringify(user))
-                localStorage.removeItem('admin') // xoá session admin nếu có
+                // --> Bỏ localStorage.removeItem('admin')
             }
 
-            // Chuyển hướng sau 1 giây
+            // Chuyển hướng sau 1 giây (giữ nguyên hành vi của bạn)
             setTimeout(() => {
                 const redirect = localStorage.getItem('redirectAfterLogin')
                 localStorage.removeItem('redirectAfterLogin')
@@ -111,6 +109,7 @@ const loginUser = async () => {
     }
 }
 </script>
+
 
 
 <style scoped>
